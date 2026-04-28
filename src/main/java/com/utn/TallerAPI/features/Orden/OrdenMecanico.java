@@ -2,17 +2,17 @@ package com.utn.TallerAPI.features.Orden;
 
 import com.utn.TallerAPI.features.Mecanico.Especialidad;
 import com.utn.TallerAPI.features.Mecanico.MecanicoEntity;
+import com.utn.TallerAPI.features.Mecanico.Especialidad;
+import com.utn.TallerAPI.features.Mecanico.MecanicoEntity;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import lombok.*;
 
-@Email
-@Table(name="orden_mecanico")
+@Entity
+@Table(name = "orden_mecanico")
 @Data @NoArgsConstructor @AllArgsConstructor @Builder
 public class OrdenMecanico {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String observaciones;

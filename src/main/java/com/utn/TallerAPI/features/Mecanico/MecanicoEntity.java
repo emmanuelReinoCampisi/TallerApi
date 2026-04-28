@@ -1,6 +1,7 @@
 package com.utn.TallerAPI.features.Mecanico;
 
 
+import com.utn.TallerAPI.features.Orden.OrdenMecanico;
 import com.utn.TallerAPI.features.Usuario.UsuarioEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -8,6 +9,7 @@ import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name="mecanicos")
