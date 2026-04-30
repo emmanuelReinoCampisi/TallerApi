@@ -13,7 +13,7 @@ public interface ImecanicoSerivice {
     MecanicoResponse obtenerPorId(Long id);
     List<MecanicoResponse> listarActivos();
     MecanicoResponse actualizar(Long id,MecanicoRequest request);
-    MecanicoResponse asignarEspecialidad(Long id,List<Long>IdsEspecialidades);
+    MecanicoResponse asignarEspecialidades(Long id,List<Long>IdsEspecialidades);
     void desactivarMecanico(Long id);
     List<MecanicoResponse> listarPorEspecialidad(Long IdEspecialidad);
     EspecialidadResponse crearEspecialidad(EspecialidadRequest request);
