@@ -1,5 +1,6 @@
 package com.utn.TallerAPI.features.Mecanico;
 
+import com.utn.TallerAPI.features.Orden.OrdenMecanico;
 import jakarta.persistence.*;
 import lombok.*;
 
