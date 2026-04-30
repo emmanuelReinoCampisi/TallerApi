@@ -9,7 +9,6 @@ import lombok.Setter;
 import java.time.LocalDate;
 
 @Entity
-@Entity
 @Table(name = "vehiculos")
 @Getter
 @Setter
