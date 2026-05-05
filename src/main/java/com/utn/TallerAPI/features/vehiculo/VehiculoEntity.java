@@ -24,8 +24,9 @@ public class VehiculoEntity {
     private String marca;
     private String modelo;
     private Integer anio;
-    private Long kilometraje;
-
+    private Integer kilometraje;
+    private String color;
+    private EstadoVehiculo estado;
 
 
 }
