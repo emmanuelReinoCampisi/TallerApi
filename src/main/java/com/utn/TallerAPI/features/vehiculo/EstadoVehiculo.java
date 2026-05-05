@@ -1,6 +1,6 @@
 package com.utn.TallerAPI.features.vehiculo;
 
 public enum EstadoVehiculo {
-    INGRESADO, EN_REVISION, EN_REPARACION,
+    DISPONIBLE,INGRESADO, EN_REVISION, EN_REPARACION,
     ESPERANDO_REPUESTO, LISTO_PARA_RETIRAR, RETIRADO
 }
