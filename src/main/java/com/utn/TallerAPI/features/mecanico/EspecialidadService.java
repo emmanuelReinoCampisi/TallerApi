@@ -1,7 +1,7 @@
 package com.utn.TallerAPI.features.Mecanico;
 
-import com.utn.TallerAPI.features.Mecanico.DTO.EspecialidadRequest;
-import com.utn.TallerAPI.features.Mecanico.DTO.EspecialidadResponse;
+import com.utn.TallerAPI.features.mecanico.dto.EspecialidadRequest;
+import com.utn.TallerAPI.features.mecanico.dto.EspecialidadResponse;
 
 import java.util.List;
 
