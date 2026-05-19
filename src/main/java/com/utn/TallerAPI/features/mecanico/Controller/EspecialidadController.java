@@ -1,8 +1,8 @@
-package com.utn.TallerAPI.features.Mecanico.Controller;
+package com.utn.TallerAPI.features.mecanico.Controller;
 
-import com.utn.TallerAPI.features.Mecanico.DTO.EspecialidadRequest;
-import com.utn.TallerAPI.features.Mecanico.DTO.EspecialidadResponse;
-import com.utn.TallerAPI.features.Mecanico.Especialidad;
+import com.utn.TallerAPI.features.mecanico.dto.EspecialidadRequest;
+import com.utn.TallerAPI.features.mecanico.dto.EspecialidadResponse;
+import com.utn.TallerAPI.features.mecanico.Especialidad;
 import com.utn.TallerAPI.features.Mecanico.EspecialidadService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
