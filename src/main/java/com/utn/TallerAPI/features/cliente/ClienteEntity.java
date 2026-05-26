@@ -1,5 +1,7 @@
 package com.utn.TallerAPI.features.cliente;
 
+import com.utn.TallerAPI.features.finanzas.deuda.DeudaEntity;
+import com.utn.TallerAPI.features.finanzas.pago.PagoEntity;
 import com.utn.TallerAPI.features.turno.TurnoEntity;
 import com.utn.TallerAPI.features.usuario.UsuarioEntity;
 import jakarta.persistence.*;
@@ -32,8 +34,8 @@ public class ClienteEntity {
     private List<TurnoEntity> turnos;
 
     @OneToMany(mappedBy = "cliente",fetch = FetchType.LAZY)
-    private DeudaCliente deudaCliente;
+    private List<DeudaEntity> deudaCliente;
 
     @OneToMany(mappedBy = "cliete",fetch = FetchType.LAZY)
-    private List<Pago> pagos;
+    private List<PagoEntity> pagos;
 }
