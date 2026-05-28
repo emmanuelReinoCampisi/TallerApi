@@ -13,7 +13,7 @@ import java.util.List;
 public interface OrdenMapper {
 
 
-    @Mapping(target = "turnoId", source = "turno.id")
+    @Mapping(target = "id", source = "turno.id")
     @Mapping(target = "vehiculoPatente", source = "turno.vehiculo.patente")
     @Mapping(target = "clienteNombre", expression = "java(nombreCliente(orden.getTurno().getCliente()))")
     @Mapping(target = "estado", expression = "java(orden.getEstado().name())")

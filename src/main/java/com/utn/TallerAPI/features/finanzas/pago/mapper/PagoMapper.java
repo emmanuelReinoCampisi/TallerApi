@@ -16,6 +16,6 @@ public interface PagoMapper {
 
 
     @Mapping(source = "cliente.id", target = "clienteId")
-    @Mapping(source = "ordenTrabajo.idTrabajo", target = "ordenTrabajoId")
+    @Mapping(source = "ordenTrabajo.id", target = "ordenTrabajoId")
     PagoResponse toResponse(PagoEntity pago);
 }

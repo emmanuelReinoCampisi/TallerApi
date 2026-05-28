@@ -10,10 +10,10 @@ import org.mapstruct.Mapping;
 
 public interface RepuestoMapper {
 
-    @Mapping(target = "IdRepuesto", ignore = true)
+    @Mapping(target = "idRepuesto", ignore = true)
     RepuestoEntity toEntity (RepuestoRequest repuestoRequest);
 
-    @Mapping(target = "bajoStock")
+    @Mapping(target = "bajoStock", expression = "java(repuestoEntity.getStockActual() <= repuestoEntity.getStockMinimo())")
     RepuestoResponse toResponse(RepuestoEntity repuestoEntity);
 
 }

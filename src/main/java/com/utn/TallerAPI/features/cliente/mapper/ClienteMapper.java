@@ -13,6 +13,6 @@ public interface ClienteMapper {
     @Mapping(target = "id",ignore = true)
     ClienteEntity toEntity(ClienteRequest request);
 
-    @Mapping(source = "id", target = "usuarioId")
+    @Mapping(source = "id", target = "usuarioID")
     ClienteResponse toResponse(ClienteEntity cliente);
 }
