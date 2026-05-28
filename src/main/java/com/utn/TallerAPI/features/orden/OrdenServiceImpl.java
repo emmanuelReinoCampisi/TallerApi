@@ -4,6 +4,7 @@ import com.utn.TallerAPI.features.cliente.TipoCliente;
 import com.utn.TallerAPI.features.mecanico.EspecialidadRepository;
 import com.utn.TallerAPI.features.orden.mapper.OrdenMapper;
 import com.utn.TallerAPI.features.repuesto.RepuestoRepository;
+import com.utn.TallerAPI.features.repuesto.RepuestoService;
 import com.utn.TallerAPI.features.turno.TurnoRepository;
 
 import java.util.Map;

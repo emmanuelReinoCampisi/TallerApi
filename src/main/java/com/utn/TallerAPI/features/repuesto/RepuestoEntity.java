@@ -7,8 +7,6 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "repuesto")
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -43,4 +41,8 @@ public boolean isBajoStoc(){
 
     return this.stockActual <= this.stockMinimo;
 }
+
+    public void setStockActual(Integer stockActual) {
+        this.stockActual = stockActual;
+    }
 }
