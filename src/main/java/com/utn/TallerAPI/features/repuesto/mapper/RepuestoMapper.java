@@ -10,7 +10,7 @@ import org.mapstruct.Mapping;
 
 public interface RepuestoMapper {
 
-    @Mapping(target = "IdRepuestp", ignore = true)
+    @Mapping(target = "IdRepuesto", ignore = true)
     RepuestoEntity toEntity (RepuestoRequest repuestoRequest);
 
     @Mapping(target = "bajoStock")

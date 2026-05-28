@@ -15,8 +15,6 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "usuarios")
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class UsuarioEntity {
@@ -61,4 +59,19 @@ public class UsuarioEntity {
         this.fechaCreacion = LocalDate.now();
     }
 
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 }

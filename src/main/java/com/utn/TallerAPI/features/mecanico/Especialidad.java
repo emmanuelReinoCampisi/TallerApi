@@ -29,4 +29,8 @@ public class Especialidad {
     public List<MecanicoEntity> getMecanicos() {
         return mecanicos;
     }
+
+    public void setNombreEspecialidad(String nombreEspecialidad) {
+        this.nombreEspecialidad = nombreEspecialidad;
+    }
 }

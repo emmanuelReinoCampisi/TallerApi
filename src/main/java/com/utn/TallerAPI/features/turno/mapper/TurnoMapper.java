@@ -11,7 +11,7 @@ import java.util.List;
 public interface TurnoMapper {
 
     @Mapping(target = "clienteId", source = "cliente.id")
-    @Mapping(target = "nombreCliente", expression = "java(turno.getCliente() != null ? turno.getCliente().getUsuario().getNombre() + ' ' + turno.getCliente().getUsuario().getApellido() : null)")
+    @Mapping(target = "NombreCliente", expression = "java(turno.getCliente() != null ? turno.getCliente().getUsuario().getNombre() + ' ' + turno.getCliente().getUsuario().getApellido() : null)")
     @Mapping(target = "vehiculoId", source = "vehiculo.id")
     @Mapping(target = "patenteVehiculo", source = "vehiculo.patente")
     @Mapping(target = "estado", expression = "java(turno.getEstado().name())")

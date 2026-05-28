@@ -1,5 +1,6 @@
 package com.utn.TallerAPI.features.orden;
 
+import com.utn.TallerAPI.features.repuesto.RepuestoEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -19,7 +20,7 @@ public class DetalleOrden {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "repuesto_id")
-    private Repuesto repuesto;
+    private RepuestoEntity repuesto;
 
     @NotBlank
     @Column(nullable = false)
@@ -48,11 +49,11 @@ public class DetalleOrden {
         this.orden = orden;
     }
 
-    public Repuesto getRepuesto() {
+    public RepuestoEntity getRepuesto() {
         return repuesto;
     }
 
-    public void setRepuesto(Repuesto repuesto) {
+    public void setRepuesto(RepuestoEntity repuesto) {
         this.repuesto = repuesto;
     }
 

@@ -11,11 +11,11 @@ import java.util.Optional;
 
 @Mapper()
 public interface MecanicoMapper {
-    @Mapping(target = "usuarioId", source = "usuario.id")
+    @Mapping(target = "usuarioId", ignore = true)
     @Mapping(target = "nombre", source = "usuario.nombre")
     @Mapping(target = "apellido", source = "usuario.apellido")
     MecanicoResponse toResponse(MecanicoEntity mecanico);
     List<MecanicoResponse> toResponseList(List<MecanicoEntity> mecanicos);
     EspecialidadResponse toEspecialidadResponse(Especialidad especialidad);
-    List<EspecialidadResponse> toEspecialidadResponseList(Optional<List<Especialidad>> especialidades);
+    List<EspecialidadResponse> toEspecialidadResponseList(List<Especialidad> especialidades);
 }

@@ -85,4 +85,5 @@ public class ClienteEntity {
     public void setTipoCliente(TipoCliente tipoCliente) {
         this.tipoCliente = tipoCliente;
     }
+
 }
