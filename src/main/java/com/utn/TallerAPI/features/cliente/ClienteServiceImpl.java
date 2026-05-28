@@ -21,9 +21,9 @@ import java.util.stream.Collectors;
 public class ClienteServiceImpl implements ClienteService {
 
 
-    private final ClienteRepository clienteRepository;
-    private final ClienteMapper clienteMapper;
-    private final UsuarioRepository usuarioRepository;
+    private  ClienteRepository clienteRepository;
+    private  ClienteMapper clienteMapper;
+    private  UsuarioRepository usuarioRepository;
 
 
     @Override
