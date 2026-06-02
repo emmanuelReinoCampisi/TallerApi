@@ -5,8 +5,6 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
 public class VehiculoResponse{
 
     private Long id;
