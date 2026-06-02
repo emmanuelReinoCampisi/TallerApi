@@ -73,7 +73,7 @@ public class DetalleOrden {
         this.cantidad = cantidad;
     }
 
-    public BigDecimal getPrecioUnitario() {
+    public Double getPrecioUnitario() {
         return precioUnitario;
     }
 

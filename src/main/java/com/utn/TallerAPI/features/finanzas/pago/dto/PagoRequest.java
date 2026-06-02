@@ -10,7 +10,7 @@ public class PagoRequest {
 
         @NotNull(message = "El monto del pago es obligatorio")
         @Positive(message = "El monto debe ser mayor a cero")
-        private Double monto;
+        private BigDecimal monto;
 
         @NotNull(message = "La fecha de pago es obligatoria")
         private LocalDateTime fechaPago;
@@ -25,7 +25,7 @@ public class PagoRequest {
         }
 
         public BigDecimal getMonto() { return monto; }
-        public void setMonto(Double monto) { this.monto = monto; }
+        public void setMonto(BigDecimal monto) { this.monto = monto; }
 
         public LocalDateTime getFechaPago() { return fechaPago; }
         public void setFechaPago(LocalDateTime fechaPago) { this.fechaPago = fechaPago; }

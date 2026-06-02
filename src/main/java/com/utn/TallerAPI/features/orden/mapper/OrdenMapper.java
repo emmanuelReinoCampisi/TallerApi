@@ -6,29 +6,80 @@ import com.utn.TallerAPI.features.orden.OrdenTrabajo;
 import com.utn.TallerAPI.features.orden.dto.OrdenMecanicoResponse;
 import com.utn.TallerAPI.features.orden.dto.OrdenResponse;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
+import org.springframework.beans.factory.annotation.Autowired;
+import java.util.ArrayList;
 import java.util.List;
 
 @Mapper(componentModel = "spring", uses = {DetalleOrdenMapper.class})
-public interface OrdenMapper {
+public abstract class OrdenMapper {
 
+    @Autowired
+    protected DetalleOrdenMapper detalleOrdenMapper;
 
-    @Mapping(target = "id", source = "turno.id")
-    @Mapping(target = "vehiculoPatente", source = "turno.vehiculo.patente")
-    @Mapping(target = "clienteNombre", expression = "java(nombreCliente(orden.getTurno().getCliente()))")
-    @Mapping(target = "estado", expression = "java(orden.getEstado().name())")
-    @Mapping(target = "detalles", source = "detalles")
-    @Mapping(target = "mecanicos", ignore = true)
-    OrdenResponse toResponse(OrdenTrabajo orden);
+    public OrdenResponse toResponse(OrdenTrabajo orden) {
+        if (orden == null) { return null; }
 
+        OrdenResponse response = new OrdenResponse();
+        response.setId(orden.getId());
 
-    @Mapping(target = "mecanicoNombre", expression = "java(ordenMecanico.getMecanico().getUsuario().getNombre() + \" \" + ordenMecanico.getMecanico().getUsuario().getApellido())")
-    @Mapping(target = "especialidadNombre", source = "mecanico.especialidad.nombre")
-    OrdenMecanicoResponse toMecanicoResponse(OrdenMecanico ordenMecanico);
+        if (orden.getEstado() != null) {
+            response.setEstado(orden.getEstado().name());
+        }
 
-    List<OrdenMecanicoResponse> toMecanicoResponseList(List<OrdenMecanico> mecanicos);
+        // Navegación segura por las relaciones del Turno
+        if (orden.getTurno() != null) {
+            response.setTurnoId(orden.getTurno().getId());
 
-    default String nombreCliente(ClienteEntity cliente) {
+            if (orden.getTurno().getVehiculoId() != null) {
+                response.setVehiculoPatente(orden.getTurno().getPatenteVehiculo());
+            }
+
+            response.setClienteNombre(this.nombreCliente(orden.getTurno().getCliente()));
+        }
+
+        // Mapeo seguro de la lista de repuestos/detalles
+        if (orden.getDetalles() != null) {
+            response.setDetalles(detalleOrdenMapper.toResponseList(orden.getDetalles()));
+        }
+
+        // Mapeo seguro de la lista de mecánicos asignados
+        if (orden.getMecanicos() != null) {
+            response.setMecanicos(this.toMecanicoResponseList(orden.getMecanicos()));
+        }
+
+        return response;
+    }
+
+    public OrdenMecanicoResponse toMecanicoResponse(OrdenMecanico ordenMecanico) {
+        if (ordenMecanico == null) { return null; }
+
+        OrdenMecanicoResponse response = new OrdenMecanicoResponse();
+
+        if (ordenMecanico.getMecanico() != null) {
+            if (ordenMecanico.getMecanico().getEspecialidad() != null) {
+                response.setEspecialidadNombre(ordenMecanico.getMecanico().getEspecialidad().getNombre());
+            }
+
+            if (ordenMecanico.getMecanico().getUsuario() != null) {
+                String nombreCompleto = (ordenMecanico.getMecanico().getUsuario().getNombre() + " " +
+                        ordenMecanico.getMecanico().getUsuario().getApellido()).trim();
+                response.setMecanicoNombre(nombreCompleto);
+            }
+        }
+
+        return response;
+    }
+
+    public List<OrdenMecanicoResponse> toMecanicoResponseList(List<OrdenMecanico> mecanicos) {
+        if (mecanicos == null) { return null; }
+        List<OrdenMecanicoResponse> lista = new ArrayList<>();
+        for (OrdenMecanico om : mecanicos) {
+            lista.add(this.toMecanicoResponse(om));
+        }
+        return lista;
+    }
+
+    private String nombreCliente(ClienteEntity cliente) {
         if (cliente == null || cliente.getUsuario() == null) {
             return null;
         }
