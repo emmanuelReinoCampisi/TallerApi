@@ -4,18 +4,29 @@ import com.utn.TallerAPI.features.finanzas.pago.PagoEntity;
 import com.utn.TallerAPI.features.finanzas.pago.dto.PagoRequest;
 import com.utn.TallerAPI.features.finanzas.pago.dto.PagoResponse;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
+
 @Mapper(componentModel = "spring")
-public interface PagoMapper {
+public abstract class PagoMapper {
 
-    @Mapping(target = "cliente", ignore = true)
-    @Mapping(target = "ordenTrabajo", ignore = true)
-    @Mapping(target = "idPago", ignore = true)
-    @Mapping(target = "fecha", ignore = true)
-    PagoEntity toEntity(PagoRequest request);
+    public PagoEntity toEntity(PagoRequest request) {
+        if (request == null) { return null; }
 
+        PagoEntity pago = new PagoEntity();
+        pago.setMontoPagar(request.getMonto());
+        pago.setFecha(request.getFechaPago());
+        return pago;
+    }
 
-    @Mapping(source = "cliente.id", target = "clienteId")
-    @Mapping(source = "ordenTrabajo.id", target = "ordenTrabajoId")
-    PagoResponse toResponse(PagoEntity pago);
+    public PagoResponse toResponse(PagoEntity pago) {
+        if (pago == null) { return null; }
+
+        PagoResponse response = new PagoResponse();
+        response.setIdPago(pago.getIdPago());
+        response.setMonto(pago.getMontoPagar());
+        response.setFechaPago(pago.getFecha());
+        if (pago.getOrdenTrabajo() != null) {
+            response.setOrdenTrabajoId(pago.getOrdenTrabajo().getId());
+        }
+        return response;
+    }
 }

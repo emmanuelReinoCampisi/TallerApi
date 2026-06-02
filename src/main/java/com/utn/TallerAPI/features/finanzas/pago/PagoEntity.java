@@ -2,6 +2,7 @@ package com.utn.TallerAPI.features.finanzas.pago;
 
 
 import com.utn.TallerAPI.features.cliente.ClienteEntity;
+import com.utn.TallerAPI.features.orden.OrdenTrabajo;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,10 +23,10 @@ public class PagoEntity {
     @JoinColumn(name = "cliente_id", nullable = false)
     private ClienteEntity cliente;
 
-    /*@ManyToOne
+    @ManyToOne
     @JoinColumn(name = "orden_trabajo_id")
-    private OrdenTrabajoEntity ordenTrabajo; // Puede ser null si paga "a cuenta" y no una orden específica
-*/
+    private OrdenTrabajo ordenTrabajo; // Puede ser null si paga "a cuenta" y no una orden específica
+
     @Column(nullable = false)
     private LocalDateTime fecha;
 
@@ -61,5 +62,13 @@ public class PagoEntity {
 
     public void setMontoPagar(BigDecimal montoPagar) {
         this.montoPagar = montoPagar;
+    }
+
+    public Long getIdPago() {
+        return idPago;
+    }
+
+    public OrdenTrabajo getOrdenTrabajo() {
+        return ordenTrabajo;
     }
 }

@@ -1,5 +1,8 @@
 package com.utn.TallerAPI.features.usuario.dto;
 
+import lombok.Builder;
+
+@Builder
 public class UsuarioResponse {
     private Long Id;
     private String username;
