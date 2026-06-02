@@ -3,7 +3,11 @@ package com.utn.TallerAPI.features.vehiculo.dto;
 import com.utn.TallerAPI.features.vehiculo.EstadoVehiculo;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 
+@Builder
+@NoArgsConstructor
 public record VehiculoRequest(
 
         Long clienteId,
