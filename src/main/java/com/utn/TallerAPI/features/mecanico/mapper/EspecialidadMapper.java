@@ -1,4 +1,4 @@
-package com.utn.TallerAPI.features.mecanico.Mapper;
+package com.utn.TallerAPI.features.mecanico.mapper;
 
 import com.utn.TallerAPI.features.mecanico.dto.EspecialidadRequest;
 import com.utn.TallerAPI.features.mecanico.dto.EspecialidadResponse;

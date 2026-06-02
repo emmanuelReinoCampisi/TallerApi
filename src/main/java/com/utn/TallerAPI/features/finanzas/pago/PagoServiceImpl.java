@@ -24,10 +24,10 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class PagoServiceImpl implements PagoService {
 
-    private final PagoRepository pagoRepository;
-    private final DeudaRepository deudaRepository;
-    private final ClienteRepository clienteRepository;
-    private final PagoMapper pagoMapper;
+    private  PagoRepository pagoRepository;
+    private  DeudaRepository deudaRepository;
+    private  ClienteRepository clienteRepository;
+    private  PagoMapper pagoMapper;
 
     @Override
     @Transactional

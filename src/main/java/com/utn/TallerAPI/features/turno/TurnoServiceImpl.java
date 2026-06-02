@@ -1,5 +1,6 @@
 package com.utn.TallerAPI.features.turno;
 
+import com.utn.TallerAPI.features.cliente.ClienteRepository;
 import com.utn.TallerAPI.features.turno.dto.TurnoRequest;
 import com.utn.TallerAPI.features.turno.dto.TurnoResponse;
 import com.utn.TallerAPI.features.turno.mapper.TurnoMapper;
@@ -17,12 +18,12 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TurnoServiceImpl implements TurnoService{
 
-    private final TurnoRepository turnoRepository;
-    //private final ClienteRepository clienteRepository;
-    private final VehiculoRepository vehiculoRepository;
-    private final UsuarioRepository usuarioRepository;
+    private  TurnoRepository turnoRepository;
+    private  ClienteRepository clienteRepository;
+    private  VehiculoRepository vehiculoRepository;
+    private  UsuarioRepository usuarioRepository;
     //private final ConfigTallerRepository configTallerRepository;
-    private final TurnoMapper turnoMapper;
+    private  TurnoMapper turnoMapper;
 
 
 /*

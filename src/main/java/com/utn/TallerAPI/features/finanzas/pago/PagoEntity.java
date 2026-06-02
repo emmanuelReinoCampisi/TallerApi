@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "pago")
-@Getter @Setter
 @NoArgsConstructor @AllArgsConstructor
 @Builder
 public class PagoEntity {
@@ -38,4 +37,29 @@ public class PagoEntity {
     private TipoPago metodoPago;
 
    // private String comprobante; // Corregido el typo "comporobante" del UML
+
+
+    public ClienteEntity getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(ClienteEntity cliente) {
+        this.cliente = cliente;
+    }
+
+    public LocalDateTime getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(LocalDateTime fecha) {
+        this.fecha = fecha;
+    }
+
+    public BigDecimal getMontoPagar() {
+        return montoPagar;
+    }
+
+    public void setMontoPagar(BigDecimal montoPagar) {
+        this.montoPagar = montoPagar;
+    }
 }
