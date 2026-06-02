@@ -1,10 +1,8 @@
 package com.utn.TallerAPI.features.vehiculo;
 
+import com.utn.TallerAPI.features.cliente.ClienteEntity;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Table(name = "vehiculos")
@@ -12,6 +10,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class VehiculoEntity {
 
     @Id
@@ -27,6 +26,77 @@ public class VehiculoEntity {
     private Integer kilometraje;
     private String color;
     private EstadoVehiculo estado;
+    private ClienteEntity cliente;
 
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getPatente() {
+        return patente;
+    }
+
+    public void setPatente(String patente) {
+        this.patente = patente;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public Integer getAnio() {
+        return anio;
+    }
+
+    public void setAnio(Integer anio) {
+        this.anio = anio;
+    }
+
+    public Integer getKilometraje() {
+        return kilometraje;
+    }
+
+    public void setKilometraje(Integer kilometraje) {
+        this.kilometraje = kilometraje;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public EstadoVehiculo getEstado() {
+        return estado;
+    }
+
+    public void setEstado(EstadoVehiculo estado) {
+        this.estado = estado;
+    }
+
+    public ClienteEntity getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(ClienteEntity cliente) {
+        this.cliente = cliente;
+    }
 }

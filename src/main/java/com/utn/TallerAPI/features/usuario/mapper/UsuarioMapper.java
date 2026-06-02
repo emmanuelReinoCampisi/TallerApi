@@ -3,10 +3,11 @@ package com.utn.TallerAPI.features.usuario.mapper;
 import com.utn.TallerAPI.features.usuario.dto.UsuarioRequest;
 import com.utn.TallerAPI.features.usuario.dto.UsuarioResponse;
 import com.utn.TallerAPI.features.usuario.UsuarioEntity;
+import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;
 
-@Component
-public class UsuarioMapper {
+@Mapper(componentModel = "spring")
+public abstract class UsuarioMapper {
 
 
     public UsuarioEntity toEntity(UsuarioRequest request){
