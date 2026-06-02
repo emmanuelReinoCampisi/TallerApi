@@ -1,18 +1,27 @@
 package com.utn.TallerAPI.features.finanzas.pago.dto;
 
-import com.utn.TallerAPI.features.finanzas.pago.TipoPago;
-
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
-public record PagoResponse(
+public class PagoResponse {
 
-        Long idPago,
-        Long clienteId,
-        Long ordenTrabajoId,
-        LocalDate fecha,
-        BigDecimal montoPagar,
-        TipoPago metodoPago,
-        String comprobante
-) {
+    private Long idPago;
+    private Double monto;
+    private LocalDateTime fechaPago;
+    private Long ordenTrabajoId;
+
+    public PagoResponse() {
+    }
+
+    public Long getIdPago() { return idPago; }
+    public void setIdPago(Long idPago) { this.idPago = idPago; }
+
+    public Double getMonto() { return monto; }
+    public void setMonto(BigDecimal monto) { this.monto = monto; }
+
+    public LocalDateTime getFechaPago() { return fechaPago; }
+    public void setFechaPago(LocalDateTime fechaPago) { this.fechaPago = fechaPago; }
+
+    public Long getOrdenTrabajoId() { return ordenTrabajoId; }
+    public void setOrdenTrabajoId(Long ordenTrabajoId) { this.ordenTrabajoId = ordenTrabajoId; }
 }
