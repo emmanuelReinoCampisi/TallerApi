@@ -9,6 +9,7 @@ import java.util.List;
 @Entity
 @Table(name = "especialidades")
 @Data
+@Getter
 @NoArgsConstructor @AllArgsConstructor
 @Builder
 public class Especialidad {
@@ -25,4 +26,7 @@ public class Especialidad {
 
     @OneToMany(mappedBy = "especialidad", fetch = FetchType.LAZY)
     private List<OrdenMecanico> ordenesMecanico;
+
+
+
 }
