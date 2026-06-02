@@ -1,5 +1,6 @@
 package com.utn.TallerAPI.features.vehiculo;
 
+import com.utn.TallerAPI.features.cliente.ClienteEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -25,6 +26,7 @@ public class VehiculoEntity {
     private Integer kilometraje;
     private String color;
     private EstadoVehiculo estado;
+    private ClienteEntity cliente;
 
     public Long getId() {
         return id;
@@ -88,5 +90,13 @@ public class VehiculoEntity {
 
     public void setEstado(EstadoVehiculo estado) {
         this.estado = estado;
+    }
+
+    public ClienteEntity getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(ClienteEntity cliente) {
+        this.cliente = cliente;
     }
 }
