@@ -4,15 +4,24 @@ import com.utn.TallerAPI.features.cliente.ClienteEntity;
 import com.utn.TallerAPI.features.cliente.dto.ClienteRequest;
 import com.utn.TallerAPI.features.cliente.dto.ClienteResponse;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
-public interface ClienteMapper {
+public abstract class ClienteMapper {
 
-    @Mapping(target = "usuario", ignore = true)
-    @Mapping(target = "id",ignore = true)
-    ClienteEntity toEntity(ClienteRequest request);
+    public ClienteEntity toEntity(ClienteRequest request) {
+        if (request == null) { return null; }
 
-    @Mapping(source = "id", target = "usuarioID")
-    ClienteResponse toResponse(ClienteEntity cliente);
+        ClienteEntity cliente = new ClienteEntity();
+        cliente.setTipoCliente(request.getTipoCliente());
+        return cliente;
+    }
+
+    public ClienteResponse toResponse(ClienteEntity cliente) {
+        if (cliente == null) { return null; }
+
+        ClienteResponse response = new ClienteResponse();
+        response.setUsuarioID(cliente.getId());
+        response.setTipoCliente(cliente.getTipoCliente());
+        return response;
+    }
 }

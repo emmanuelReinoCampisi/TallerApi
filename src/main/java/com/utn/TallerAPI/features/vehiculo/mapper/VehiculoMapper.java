@@ -4,63 +4,55 @@ import com.utn.TallerAPI.features.vehiculo.VehiculoEntity;
 import com.utn.TallerAPI.features.vehiculo.dto.VehiculoRequest;
 import com.utn.TallerAPI.features.vehiculo.dto.VehiculoResponse;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-
 import java.util.ArrayList;
 import java.util.List;
-import lombok.*;
 
 @Mapper(componentModel = "spring")
- public abstract class VehiculoMapper {
+public abstract class VehiculoMapper {
 
-    public VehiculoEntity toEntity(VehiculoRequest request){
-            if(request == null){return null;}
-           VehiculoEntity vehiculo = new VehiculoEntity();
+    public VehiculoEntity toEntity(VehiculoRequest request) {
+        if (request == null) { return null; }
 
-            vehiculo.setPatente(request.getPatente());
-            vehiculo.setMarca(request.getMarca());
-            vehiculo.setModelo(request.getModelo());
-
-            return vehiculo;
+        VehiculoEntity vehiculo = new VehiculoEntity();
+        vehiculo.setPatente(request.getPatente());
+        vehiculo.setMarca(request.getMarca());
+        vehiculo.setModelo(request.getModelo());
+        vehiculo.setAnio(request.getAnio());
+        vehiculo.setColor(request.getColor());
+        vehiculo.setKilometraje(request.getKilometraje());
+        // Nota: La relación con ClienteEntity se asigna normalmente en el Service usando el clienteId
+        return vehiculo;
     }
 
-   public VehiculoResponse toResponse(VehiculoEntity vehiculo){
-        if(vehiculo == null){
-            return null;
-        }
+    public VehiculoResponse toResponse(VehiculoEntity vehiculo) {
+        if (vehiculo == null) { return null; }
+
         VehiculoResponse response = new VehiculoResponse();
+        // Sincronizado con 'idVehiculo' de tu modelo UML
         response.setId(vehiculo.getId());
         response.setPatente(vehiculo.getPatente());
         response.setMarca(vehiculo.getMarca());
         response.setModelo(vehiculo.getModelo());
+        response.setAnio(vehiculo.getAnio());
+        response.setColor(vehiculo.getColor());
+        response.setKilometraje(vehiculo.getKilometraje());
+        response.setEstadoEnTaller(vehiculo.getEstado());
 
-        if(response.getEstadoEnTaller() != null){
-            response.setEstadoEnTaller(vehiculo.getEstado().name());
-        }
 
-        if(response.getClienteId() != null){
+        if (vehiculo.getCliente() != null) {
             response.setClienteId(vehiculo.getCliente().getId());
-            if(vehiculo.getCliente().getUsuario() != null){
-                String nombreCompleto = vehiculo.getCliente().getUsuario().getNombre()+""+
-                        vehiculo.getCliente().getUsuario().getApellido().trim();
-                response.setNombreCliente(nombreCompleto);
-            }else {
-                response.setNombreCliente("Vehiculo Propio del Taller");
-            }
         }
 
         return response;
     }
 
-    List<VehiculoResponse> toResponseList(List<VehiculoEntity> vehiculos){
-        if(vehiculos == null)return null;
+    public List<VehiculoResponse> toResponseList(List<VehiculoEntity> vehiculos) {
+        if (vehiculos == null) { return null; }
 
-        List<VehiculoResponse> list = new ArrayList<>();
-
-        for(VehiculoEntity v : vehiculos){ ///  para cada vehiculo de la lista
-            list.add(this.toResponse(v)); /// agregalo a la lista VehiculoResponse
+        List<VehiculoResponse> lista = new ArrayList<>();
+        for (VehiculoEntity v : vehiculos) {
+            lista.add(toResponse(v));
         }
-        return list;
+        return lista;
     }
-
 }

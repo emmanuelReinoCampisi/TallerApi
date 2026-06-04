@@ -4,17 +4,36 @@ import com.utn.TallerAPI.features.mecanico.dto.EspecialidadRequest;
 import com.utn.TallerAPI.features.mecanico.dto.EspecialidadResponse;
 import com.utn.TallerAPI.features.mecanico.Especialidad;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-
+import java.util.ArrayList;
 import java.util.List;
+
 @Mapper(componentModel = "spring")
-public interface EspecialidadMapper {
+public abstract class EspecialidadMapper {
 
-    EspecialidadResponse toResponse(Especialidad especialidad);
+    public EspecialidadResponse toResponse(Especialidad especialidad) {
+        if (especialidad == null) { return null; }
 
-    @Mapping(target = "id", ignore = true)
-    @Mapping(target = "mecanicos", ignore = true)
-    Especialidad toEntity(EspecialidadRequest request);
+        EspecialidadResponse response = new EspecialidadResponse();
+        response.setId(especialidad.getId());
+        response.setNombre(especialidad.getNombreEspecialidad());
+        return response;
+    }
 
-    List<EspecialidadResponse> toResponseList(List<Especialidad> especialidades);
+    public Especialidad toEntity(EspecialidadRequest request) {
+        if (request == null) { return null; }
+
+        Especialidad especialidad = new Especialidad();
+        especialidad.setNombreEspecialidad(request.getNombre());
+        return especialidad;
+    }
+
+    public List<EspecialidadResponse> toResponseList(List<Especialidad> especialidades) {
+        if (especialidades == null) { return null; }
+
+        List<EspecialidadResponse> list = new ArrayList<>();
+        for (Especialidad esp : especialidades) {
+            list.add(toResponse(esp));
+        }
+        return list;
+    }
 }

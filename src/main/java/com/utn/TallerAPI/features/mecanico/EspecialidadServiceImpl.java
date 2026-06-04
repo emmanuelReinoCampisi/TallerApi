@@ -4,7 +4,7 @@ import com.utn.TallerAPI.Exception.BusinessException;
 import com.utn.TallerAPI.Exception.ResourceNotFoundException;
 import com.utn.TallerAPI.features.mecanico.dto.EspecialidadRequest;
 import com.utn.TallerAPI.features.mecanico.dto.EspecialidadResponse;
-import com.utn.TallerAPI.features.Mecanico.Mapper.EspecialidadMapper;
+import com.utn.TallerAPI.features.mecanico.mapper.EspecialidadMapper;
 import com.utn.TallerAPI.features.mecanico.Especialidad;
 import com.utn.TallerAPI.features.mecanico.EspecialidadRepository;
 import org.springframework.transaction.annotation.Transactional;

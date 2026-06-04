@@ -19,45 +19,46 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class MecanicoService implements ImecanicoSerivice{
+public class MecanicoService implements ImecanicoSerivice {
 
-    private  ImecanicoRepository mecanicoRepository;
-    private  EspecialidadRepository especialidadRepository;
-    private  UsuarioRepository usuarioRepository;
-    private  MecanicoMapper mecanicoMapper;
-    private  ThreadPoolTaskExecutor threadPoolTaskExecutor;
+    // Agregados 'final' obligatorios para que @RequiredArgsConstructor aplique la inyección de Spring
+    private final ImecanicoRepository mecanicoRepository;
+    private final EspecialidadRepository especialidadRepository;
+    private final UsuarioRepository usuarioRepository;
+    private final MecanicoMapper mecanicoMapper;
+    private final ThreadPoolTaskExecutor threadPoolTaskExecutor;
 
     @Override
     @Transactional
     public MecanicoResponse crear(MecanicoRequest request) {
-        if (mecanicoRepository.existsByLegajo(request.legajo())) {
+        if (mecanicoRepository.existsByLegajo(request.getLegajo())) {
             throw new BusinessException("Ya existe un mecanico con este legajo");
         }
 
         MecanicoEntity mecanico = new MecanicoEntity();
-        mecanico.setUsuario(request.usuarioId() != null
-                ? usuarioRepository.findById(request.usuarioId())
+        mecanico.setUsuario(request.getUsuarioId() != null
+                ? usuarioRepository.findById(request.getUsuarioId())
                 .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado"))
                 : null);
-        mecanico.setLegajo(request.legajo());
-        mecanico.setSalario(request.sueldo());
-        mecanico.setFechaIngreso(request.fechaIngreso());
+        mecanico.setLegajo(request.getLegajo());
+        mecanico.setSalario(request.getSueldo());
+        mecanico.setFechaIngreso(request.getFechaIngreso());
         mecanico.setActivo(true);
-        if (request.especialidadIds() != null) {
-            List<Especialidad> especialidades = request.especialidadIds().stream()
-                    .map(eid ->  especialidadRepository.findById(eid)
-                            .orElseThrow(() -> new ResourceNotFoundException("Especialidad no encontrada: "+eid)))
+
+        if (request.getEspecialidadIds() != null) {
+            List<Especialidad> especialidades = request.getEspecialidadIds().stream()
+                    .map(eid -> especialidadRepository.findById(eid)
+                            .orElseThrow(() -> new ResourceNotFoundException("Especialidad no encontrada: " + eid)))
                     .collect(Collectors.toList());
             mecanico.setEspecialidades(especialidades);
         }
         return mecanicoMapper.toResponse(mecanicoRepository.save(mecanico));
-
-
     }
 
     @Override
     public MecanicoResponse obtenerPorId(Long id) {
-        return mecanicoMapper.toResponse(mecanicoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Mecanico no encontrado")));
+        return mecanicoMapper.toResponse(mecanicoRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Mecanico no encontrado")));
     }
 
     @Override
@@ -71,18 +72,17 @@ public class MecanicoService implements ImecanicoSerivice{
         MecanicoEntity mecanico = mecanicoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Mecánico no encontrado con ID: " + id));
 
-        if (!mecanico.getLegajo().equals(request.legajo()) &&
-                mecanicoRepository.existsByLegajo(request.legajo())) {
+        if (!mecanico.getLegajo().equals(request.getLegajo()) &&
+                mecanicoRepository.existsByLegajo(request.getLegajo())) {
             throw new BusinessException("El nuevo legajo ya está asignado a otro mecánico");
         }
 
+        mecanico.setSalario(request.getSueldo());
+        mecanico.setFechaIngreso(request.getFechaIngreso());
+        mecanico.setLegajo(request.getLegajo());
 
-        mecanico.setSalario(request.sueldo());
-        mecanico.setFechaIngreso(request.fechaIngreso());
-        mecanico.setLegajo(request.legajo());
-
-        if (request.especialidadIds() != null) {
-            List<Especialidad> nuevasEspecialidades = request.especialidadIds().stream()
+        if (request.getEspecialidadIds() != null) {
+            List<Especialidad> nuevasEspecialidades = request.getEspecialidadIds().stream()
                     .map(eid -> especialidadRepository.findById(eid)
                             .orElseThrow(() -> new ResourceNotFoundException("Especialidad no encontrada: " + eid)))
                     .collect(Collectors.toList());
@@ -95,7 +95,9 @@ public class MecanicoService implements ImecanicoSerivice{
     @Override
     @Transactional
     public MecanicoResponse asignarEspecialidades(Long id, List<Long> IdsEspecialidades) {
-        MecanicoEntity mecanico = mecanicoRepository.findByUsuarioId(id).orElseThrow(() -> new ResourceNotFoundException("Mecanico no encontrado"));
+        MecanicoEntity mecanico = mecanicoRepository.findByUsuarioId(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Mecanico no encontrado"));
+
         if (IdsEspecialidades == null || IdsEspecialidades.isEmpty()) {
             mecanico.setEspecialidades(new ArrayList<>());
         } else {
@@ -111,37 +113,39 @@ public class MecanicoService implements ImecanicoSerivice{
     @Override
     @Transactional
     public void desactivarMecanico(Long id) {
-        MecanicoEntity mecanico = mecanicoRepository.findByUsuarioId(id).orElseThrow(() -> new ResourceNotFoundException("Mecanico no encontrado"));
+        MecanicoEntity mecanico = mecanicoRepository.findByUsuarioId(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Mecanico no encontrado"));
         mecanico.setActivo(false);
         mecanicoRepository.save(mecanico);
     }
 
     @Override
     public List<MecanicoResponse> listarPorEspecialidad(Long IdEspecialidad) {
-            return mecanicoMapper.toResponseList(mecanicoRepository.findByEspecialidadesId(IdEspecialidad));
+        return mecanicoMapper.toResponseList(mecanicoRepository.findByEspecialidadesId(IdEspecialidad));
     }
 
     @Override
     @Transactional
     public EspecialidadResponse crearEspecialidad(EspecialidadRequest request) {
-        if(especialidadRepository.existsByNombre(request.nombre())) {
-            throw new BusinessException("Esta especialidad ya existe con el nombre: " + request.nombre());
+        if (especialidadRepository.existsByNombre(request.getNombre())) {
+            throw new BusinessException("Esta especialidad ya existe con el nombre: " + request.getNombre());
         }
         Especialidad especialidad = new Especialidad();
-                especialidad.setNombreEspecialidad(request.nombre());
-
+        especialidad.setNombreEspecialidad(request.getNombre());
 
         return mecanicoMapper.toEspecialidadResponse(especialidadRepository.save(especialidad));
     }
 
     @Override
     public List<EspecialidadResponse> listarEspecialidades() {
-        return List.of();
+
+        return mecanicoMapper.toEspecialidadResponseList(especialidadRepository.findAll());
     }
 
     @Override
     public EspecialidadResponse obtenerEspecialidadPorId(Long id) {
-        return mecanicoMapper.toEspecialidadResponse(especialidadRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Especialidad no encontrado")));
+        return mecanicoMapper.toEspecialidadResponse(especialidadRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Especialidad no encontrado")));
     }
 
     @Override
@@ -154,6 +158,4 @@ public class MecanicoService implements ImecanicoSerivice{
         }
         especialidadRepository.deleteById(id);
     }
-
-
 }
