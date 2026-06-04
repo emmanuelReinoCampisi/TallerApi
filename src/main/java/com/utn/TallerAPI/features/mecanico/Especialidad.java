@@ -25,12 +25,4 @@ public class Especialidad {
 
     @OneToMany(mappedBy = "especialidad", fetch = FetchType.LAZY)
     private List<OrdenMecanico> ordenesMecanico;
-
-    public List<MecanicoEntity> getMecanicos() {
-        return mecanicos;
-    }
-
-    public void setNombreEspecialidad(String nombreEspecialidad) {
-        this.nombreEspecialidad = nombreEspecialidad;
-    }
 }
