@@ -4,16 +4,36 @@ import com.utn.TallerAPI.features.repuesto.RepuestoEntity;
 import com.utn.TallerAPI.features.repuesto.dto.RepuestoRequest;
 import com.utn.TallerAPI.features.repuesto.dto.RepuestoResponse;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
+public abstract class RepuestoMapper {
 
-public interface RepuestoMapper {
+    public RepuestoEntity toEntity(RepuestoRequest request) {
+        if (request == null) { return null; }
 
-    @Mapping(target = "IdRepuestp", ignore = true)
-    RepuestoEntity toEntity (RepuestoRequest repuestoRequest);
+        RepuestoEntity repuesto = new RepuestoEntity();
+        repuesto.setNombre(request.getNombreRepuesto());
+        repuesto.setCodigoRepuesto(request.getCodigoRepuesto());
+        repuesto.setStockActual(request.getStockActual());
+        repuesto.setStockMinimo(request.getStockMinimo());
+        repuesto.setPrecioVenta(request.getPrecioVenta());
+        return repuesto;
+    }
 
-    @Mapping(target = "bajoStock")
-    RepuestoResponse toResponse(RepuestoEntity repuestoEntity);
+    public RepuestoResponse toResponse(RepuestoEntity entity) {
+        if (entity == null) { return null; }
 
+        RepuestoResponse response = new RepuestoResponse();
+        response.setId(entity.getId());
+        response.setNombre(entity.getNombre());
+        response.setCodigoRepuesto(entity.getCodigoRepuesto());
+        response.setStockActual(entity.getStockActual());
+        response.setStockMinimo(entity.getStockMinimo());
+        response.setPrecioVenta(entity.getPrecioVenta());
+
+        boolean bajoStock = entity.getStockActual() <= entity.getStockMinimo();
+        response.setBajoStock(bajoStock);
+
+        return response;
+    }
 }

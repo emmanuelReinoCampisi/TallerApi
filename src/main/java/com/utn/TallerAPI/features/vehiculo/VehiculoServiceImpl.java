@@ -3,6 +3,7 @@ package com.utn.TallerAPI.features.vehiculo;
 import com.utn.TallerAPI.Exception.BusinessException;
 import com.utn.TallerAPI.Exception.ResourceNotFoundException;
 import com.utn.TallerAPI.features.cliente.ClienteEntity;
+import com.utn.TallerAPI.features.cliente.ClienteRepository;
 import com.utn.TallerAPI.features.vehiculo.dto.VehiculoRequest;
 import com.utn.TallerAPI.features.vehiculo.dto.VehiculoResponse;
 import com.utn.TallerAPI.features.vehiculo.mapper.VehiculoMapper;
@@ -17,10 +18,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class VehiculoServiceImpl implements VehiculoService{
 
-    private final VehiculoRepository vehiculoRepository;
-// falta ClienteRepository
-    private final VehiculoMapper vehiculoMapper;
-/*
+    private  VehiculoRepository vehiculoRepository;
+
+    private ClienteRepository clienteRepository;
+    private  VehiculoMapper vehiculoMapper;
+
     @Override
     @Transactional
     public VehiculoResponse crear(VehiculoRequest request) {
@@ -46,7 +48,7 @@ public class VehiculoServiceImpl implements VehiculoService{
 
         return vehiculoMapper.toResponse(vehiculoRepository.save(vehiculo));
     }
-*/
+
     @Override
     public VehiculoResponse obtenerPorId(Long id) {
         VehiculoEntity vehiculo = vehiculoRepository.findById(id)

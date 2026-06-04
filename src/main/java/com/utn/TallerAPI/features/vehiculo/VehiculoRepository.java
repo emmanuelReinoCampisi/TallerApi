@@ -12,5 +12,5 @@ public interface VehiculoRepository extends JpaRepository<VehiculoResponse,Long>
     List<VehiculoEntity> findByClienteId(Long clienteId);
     List<VehiculoEntity>findByEstadoEnTaller(String estadoEnTaller);
     VehiculoEntity save(VehiculoEntity vehiculoEntity);
-    Optional<VehiculoEntity> findById(Long id);
+  
 }

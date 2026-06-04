@@ -1,7 +1,9 @@
 package com.utn.TallerAPI.features.usuario.dto;
 
 import com.utn.TallerAPI.features.usuario.Rol;
+import lombok.Builder;
 
+@Builder
 public class UsuarioRequest {
     private String username;
     private String password;

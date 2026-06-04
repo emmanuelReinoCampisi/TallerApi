@@ -1,27 +1,38 @@
 package com.utn.TallerAPI.features.finanzas.pago.dto;
 
-import com.utn.TallerAPI.features.finanzas.pago.TipoPago;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
-public record PagoRequest(
+public class PagoRequest {
+
+        @NotNull(message = "El monto del pago es obligatorio")
+        @Positive(message = "El monto debe ser mayor a cero")
+        private BigDecimal monto;
+
+        @NotNull(message = "La fecha de pago es obligatoria")
+        private LocalDateTime fechaPago;
+
+        @NotNull(message = "El ID de la orden de trabajo es obligatorio")
+        private Long ordenTrabajoId;
 
         @NotNull(message = "El ID del cliente es obligatorio")
-        Long clienteId,
+        private Long clienteId;
 
-        Long ordenTrabajoId, // por si paga un orden en especifico
+        public PagoRequest() {
+        }
 
-        @NotNull(message = "El monto es obligatorio")
-        @Positive(message = "El monto debe ser mayor a cero")
-        BigDecimal montoPagar,
+        public BigDecimal getMonto() { return monto; }
+        public void setMonto(BigDecimal monto) { this.monto = monto; }
 
-        @NotNull(message = "El método de pago es obligatorio")
-        TipoPago metodoPago
+        public LocalDateTime getFechaPago() { return fechaPago; }
+        public void setFechaPago(LocalDateTime fechaPago) { this.fechaPago = fechaPago; }
 
-        //String comprobante a chequear
+        public Long getOrdenTrabajoId() { return ordenTrabajoId; }
+        public void setOrdenTrabajoId(Long ordenTrabajoId) { this.ordenTrabajoId = ordenTrabajoId; }
 
-
-) {
+        public Long getClienteId() { return clienteId; }
+        public void setClienteId(Long clienteId) { this.clienteId = clienteId; }
 }

@@ -10,8 +10,6 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "deuda_cliente")
-@Getter
-@Setter
 @NoArgsConstructor @AllArgsConstructor @Builder
 public class DeudaEntity {
 
@@ -24,10 +22,50 @@ public class DeudaEntity {
     private ClienteEntity cliente;
 
     @Column(nullable = false)
-    BigDecimal dueda;
+    private BigDecimal dueda;
 
     @Column(nullable = false)
-    LocalDate fechaUltimaActualizacion;
+    private LocalDate fechaUltimaActualizacion;
 
     private LocalDate fechaPagar;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public ClienteEntity getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(ClienteEntity cliente) {
+        this.cliente = cliente;
+    }
+
+    public BigDecimal getDueda() {
+        return dueda;
+    }
+
+    public void setDueda(BigDecimal dueda) {
+        this.dueda = dueda;
+    }
+
+    public LocalDate getFechaUltimaActualizacion() {
+        return fechaUltimaActualizacion;
+    }
+
+    public void setFechaUltimaActualizacion(LocalDate fechaUltimaActualizacion) {
+        this.fechaUltimaActualizacion = fechaUltimaActualizacion;
+    }
+
+    public LocalDate getFechaPagar() {
+        return fechaPagar;
+    }
+
+    public void setFechaPagar(LocalDate fechaPagar) {
+        this.fechaPagar = fechaPagar;
+    }
 }

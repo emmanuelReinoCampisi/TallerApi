@@ -13,8 +13,6 @@ import java.util.List;
 
 @Entity
 @Table(name="mecanicos")
-@Getter
-@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -47,5 +45,67 @@ public class MecanicoEntity {
     private List<OrdenMecanico> ordenes;
 
 
+    public BigDecimal getSalario() {
+        return salario;
+    }
 
+    public void setSalario(BigDecimal salario) {
+        this.salario = salario;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getLegajo() {
+        return legajo;
+    }
+
+    public void setLegajo(String legajo) {
+        this.legajo = legajo;
+    }
+
+    public LocalDate getFechaIngreso() {
+        return fechaIngreso;
+    }
+
+    public void setFechaIngreso(LocalDate fechaIngreso) {
+        this.fechaIngreso = fechaIngreso;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
+
+    public UsuarioEntity getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(UsuarioEntity usuario) {
+        this.usuario = usuario;
+    }
+
+    public List<Especialidad> getEspecialidades() {
+        return especialidades;
+    }
+
+    public void setEspecialidades(List<Especialidad> especialidades) {
+        this.especialidades = especialidades;
+    }
+
+    public List<OrdenMecanico> getOrdenes() {
+        return ordenes;
+    }
+
+    public void setOrdenes(List<OrdenMecanico> ordenes) {
+        this.ordenes = ordenes;
+    }
 }

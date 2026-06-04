@@ -13,7 +13,7 @@ import java.util.List;
 public class EspecialidadServiceImpl implements EspecialidadService {
 
     private final EspecialidadRepository especialidadRepository;
-    private final EspecialidadMapper  especialidadMapper;
+    private final EspecialidadMapper especialidadMapper;
 
     public EspecialidadServiceImpl(EspecialidadRepository especialidadRepository, EspecialidadMapper especialidadMapper) {
         this.especialidadRepository = especialidadRepository;

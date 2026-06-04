@@ -24,7 +24,7 @@ public class RepuestoServiceImpl implements RepuestoService{
     @Override
     @Transactional
     public RepuestoResponse registrar(RepuestoRequest request) {
-        if(repuestoRepository.existsByCodigo(request.codigoRepuesto())){
+        if(repuestoRepository.existsByCodigo(request.getCodigoRepuesto())){
             throw new BusinessException("Ya existe un repuesto con este codigo");
         }
         RepuestoEntity r = repuestoMapper.toEntity(request);
