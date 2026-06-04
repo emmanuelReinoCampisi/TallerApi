@@ -12,7 +12,7 @@ public abstract class DeudaMapper {
         if (request == null) { return null; }
 
         DeudaEntity deuda = new DeudaEntity();
-        deuda.setMontoTotal(request.getMontoTotal());
+        deuda.setDueda(request.getMontoTotal());
         deuda.setSaldoDeudor(request.getSaldoDeudor());
         return deuda;
     }

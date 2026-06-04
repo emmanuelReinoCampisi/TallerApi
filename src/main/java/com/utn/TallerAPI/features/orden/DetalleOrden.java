@@ -31,7 +31,7 @@ public class DetalleOrden {
 
     @NotNull
     @Column(nullable = false)
-    private BigDecimal precioUnitario;
+    private Double precioUnitario;
 
     public Long getId() {
         return id;
@@ -77,7 +77,7 @@ public class DetalleOrden {
         return precioUnitario;
     }
 
-    public void setPrecioUnitario(BigDecimal precioUnitario) {
+    public void setPrecioUnitario(Double precioUnitario) {
         this.precioUnitario = precioUnitario;
     }
 

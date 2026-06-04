@@ -17,7 +17,7 @@ public class PagoResponse {
     public void setIdPago(Long idPago) { this.idPago = idPago; }
 
     public Double getMonto() { return monto; }
-    public void setMonto(BigDecimal monto) { this.monto = monto; }
+    public void setMonto(Double monto) { this.monto = monto; }
 
     public LocalDateTime getFechaPago() { return fechaPago; }
     public void setFechaPago(LocalDateTime fechaPago) { this.fechaPago = fechaPago; }
