@@ -2,10 +2,12 @@ package com.utn.TallerAPI.features.orden.mapper;
 
 import com.utn.TallerAPI.features.orden.DetalleOrden;
 import com.utn.TallerAPI.features.orden.dto.DetalleOrdenResponse;
+import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 import java.util.List;
 
+@Mapper(componentModel = "spring")
 public interface DetalleOrdenMapper {
 
     @Mapping(target = "repuestoId", source = "repuesto.id")

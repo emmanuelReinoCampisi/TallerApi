@@ -4,12 +4,19 @@ import com.utn.TallerAPI.features.repuesto.RepuestoEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.*;
 
 import java.math.BigDecimal;
 
 @Entity
 @Table(name = "detalle_orden")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class DetalleOrden {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -32,53 +39,4 @@ public class DetalleOrden {
     @NotNull
     @Column(nullable = false)
     private BigDecimal precioUnitario;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public OrdenTrabajo getOrden() {
-        return orden;
-    }
-
-    public void setOrden(OrdenTrabajo orden) {
-        this.orden = orden;
-    }
-
-    public RepuestoEntity getRepuesto() {
-        return repuesto;
-    }
-
-    public void setRepuesto(RepuestoEntity repuesto) {
-        this.repuesto = repuesto;
-    }
-
-    public String getDescripcionTrabajo() {
-        return descripcionTrabajo;
-    }
-
-    public void setDescripcionTrabajo(String descripcionTrabajo) {
-        this.descripcionTrabajo = descripcionTrabajo;
-    }
-
-    public Integer getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(Integer cantidad) {
-        this.cantidad = cantidad;
-    }
-
-    public BigDecimal getPrecioUnitario() {
-        return precioUnitario;
-    }
-
-    public void setPrecioUnitario(BigDecimal precioUnitario) {
-        this.precioUnitario = precioUnitario;
-    }
-
 }

@@ -23,10 +23,12 @@ public interface OrdenMapper {
 
 
     @Mapping(target = "mecanicoNombre", expression = "java(ordenMecanico.getMecanico().getUsuario().getNombre() + \" \" + ordenMecanico.getMecanico().getUsuario().getApellido())")
-    @Mapping(target = "especialidadNombre", source = "mecanico.especialidad.nombre")
+    @Mapping(target = "especialidadNombre", source = "especialidad.nombreEspecialidad")
     OrdenMecanicoResponse toMecanicoResponse(OrdenMecanico ordenMecanico);
 
     List<OrdenMecanicoResponse> toMecanicoResponseList(List<OrdenMecanico> mecanicos);
+
+    List<OrdenResponse> toResponseList(List<OrdenTrabajo> ordenes);
 
     default String nombreCliente(ClienteEntity cliente) {
         if (cliente == null || cliente.getUsuario() == null) {

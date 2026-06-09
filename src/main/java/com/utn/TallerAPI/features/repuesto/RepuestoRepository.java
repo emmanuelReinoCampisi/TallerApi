@@ -10,8 +10,8 @@ import java.util.Optional;
 @Repository
 public interface RepuestoRepository extends JpaRepository<RepuestoEntity,Long> {
 
-    Optional<RepuestoEntity> findByCodigo(String codigo);
-    boolean existsByCodigo(String codigo);
+    Optional<RepuestoEntity> findByCodigoRepuesto(String codigo);
+    boolean existsByCodigoRepuesto(String codigo);
 
     @Query("SELECT r from RepuestoEntity r where r.stockActual <= r.stockMinimo")
     List<RepuestoEntity> findBajoStock();

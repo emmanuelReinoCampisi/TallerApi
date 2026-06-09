@@ -21,9 +21,9 @@ import java.util.stream.Collectors;
 public class ClienteServiceImpl implements ClienteService {
 
 
-    private  ClienteRepository clienteRepository;
-    private  ClienteMapper clienteMapper;
-    private  UsuarioRepository usuarioRepository;
+    private final ClienteRepository clienteRepository;
+    private final ClienteMapper clienteMapper;
+    private final UsuarioRepository usuarioRepository;
 
 
     @Override
@@ -43,7 +43,7 @@ public class ClienteServiceImpl implements ClienteService {
         return clienteMapper.toResponse(clienteRepository.save(c));
     }
 
-    public ClienteResponse obtenerPorID(Integer id){
+    public ClienteResponse obtenerPorID(Long id){
 
         ClienteEntity c= clienteRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("No se encontro ningun cliente con el id: "+id));
         return clienteMapper.toResponse(c);

@@ -4,31 +4,33 @@ import com.utn.TallerAPI.features.usuario.dto.UsuarioRequest;
 import com.utn.TallerAPI.features.usuario.dto.UsuarioResponse;
 import com.utn.TallerAPI.features.usuario.UsuarioEntity;
 import org.mapstruct.Mapper;
-import org.springframework.stereotype.Component;
+import org.mapstruct.Mapping;
+import org.mapstruct.Mappings;
+import org.mapstruct.MappingTarget;
+
+import java.util.List;
 
 @Mapper(componentModel = "spring")
-public abstract class UsuarioMapper {
+public interface UsuarioMapper {
 
+    @Mappings({
+        @Mapping(target = "id", ignore = true),
+        @Mapping(target = "password", ignore = true),
+        @Mapping(target = "activo", ignore = true),
+        @Mapping(target = "fechaCreacion", ignore = true),
+        @Mapping(target = "mecanico", ignore = true),
+        @Mapping(target = "clienteEntity", ignore = true),
+        @Mapping(target = "userName", source = "username")
+    })
+    UsuarioEntity toEntity(UsuarioRequest request);
 
-    public UsuarioEntity toEntity(UsuarioRequest request){
+    void updateEntity(@MappingTarget UsuarioEntity entity, UsuarioRequest request);
 
-        if(request == null)return null;
-        UsuarioEntity usuario = new UsuarioEntity();
-        usuario.setUserName(request.getUsername());
-        usuario.setPassword(request.getPassword());
-        usuario.setEmail(request.getEmail());
-        return usuario;
-    }
+    @Mappings({
+        @Mapping(target = "id", source = "id"),
+        @Mapping(target = "username", source = "userName")
+    })
+    UsuarioResponse toResponse(UsuarioEntity entity);
 
-    public UsuarioResponse toResponse(UsuarioEntity entity){
-
-        if(entity == null)return null;
-        UsuarioResponse usuarioResponse = new UsuarioResponse();
-        usuarioResponse.setId(entity.getId());
-        usuarioResponse.setUsername(entity.getUserName());
-        usuarioResponse.setEmail(entity.getEmail());
-        return usuarioResponse;
-    }
-
-
+    List<UsuarioResponse> toResponseList(List<UsuarioEntity> entities);
 }

@@ -14,6 +14,7 @@ public interface EspecialidadMapper {
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "mecanicos", ignore = true)
+    @Mapping(target = "nombreEspecialidad", source = "nombre")
     Especialidad toEntity(EspecialidadRequest request);
 
     List<EspecialidadResponse> toResponseList(List<Especialidad> especialidades);

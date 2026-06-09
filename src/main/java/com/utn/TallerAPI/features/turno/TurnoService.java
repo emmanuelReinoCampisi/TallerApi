@@ -2,7 +2,6 @@ package com.utn.TallerAPI.features.turno;
 
 import com.utn.TallerAPI.features.turno.dto.TurnoRequest;
 import com.utn.TallerAPI.features.turno.dto.TurnoResponse;
-import com.utn.TallerAPI.features.vehiculo.EstadoVehiculo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -11,12 +10,11 @@ import java.util.List;
 
 public interface TurnoService {
 
-    TurnoResponse crear(TurnoRequest turnoRequest,String nombreCreador);
+    TurnoResponse crear(TurnoRequest request, String usernameCreador);
     TurnoResponse obtenerPorId(Long id);
-    Page<TurnoResponse> listarTodos(Pageable page);
-    List<TurnoResponse> listarPorClienteId(Long clienteId);
+    Page<TurnoResponse> listarTodos(Pageable pageable);
+    List<TurnoResponse> listarPorCliente(Long clienteId);
     List<TurnoResponse> listarPorFecha(LocalDate fecha);
-    TurnoResponse actualizar(TurnoRequest turnoRequest, EstadoTurno estado);
+    TurnoResponse cambiarEstado(Long id, EstadoTurno nuevoEstado);
     void cancelar(Long id);
-
 }

@@ -5,6 +5,6 @@ import com.utn.TallerAPI.features.finanzas.deuda.dto.DeudaResponse;
 
 public interface DeudaService {
 
-    DeudaResponse obtenerPorClienteId(Integer clienteId);
+    DeudaResponse obtenerPorClienteId(Long clienteId);
     DeudaResponse ajustarDeudaManualmente(DeudaRequest request);
 }

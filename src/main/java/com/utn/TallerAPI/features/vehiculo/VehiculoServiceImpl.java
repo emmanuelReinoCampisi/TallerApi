@@ -14,29 +14,29 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 @RequiredArgsConstructor
-public class VehiculoServiceImpl implements VehiculoService{
+public class VehiculoServiceImpl implements VehiculoService {
 
-    private  VehiculoRepository vehiculoRepository;
-
-    private ClienteRepository clienteRepository;
-    private  VehiculoMapper vehiculoMapper;
+    private final VehiculoRepository vehiculoRepository;
+    private final ClienteRepository clienteRepository;
+    private final VehiculoMapper vehiculoMapper;
 
     @Override
     @Transactional
     public VehiculoResponse crear(VehiculoRequest request) {
-        String patenteLimpia = request.patente().trim().toUpperCase();
+        String patenteLimpia = request.getPatente().trim().toUpperCase();
         if (vehiculoRepository.existsByPatente(patenteLimpia)) {
             throw new BusinessException("Ya existe un vehículo registrado con la patente: " + patenteLimpia);
         }
 
         VehiculoEntity vehiculo = vehiculoMapper.toEntity(request);
-        vehiculo.setPatente(patenteLimpia); // Seteamos la patente ya normalizada
+        vehiculo.setPatente(patenteLimpia);
 
-        if (request.clienteId() != null) {
-            ClienteEntity cliente = clienteRepository.findById(request.clienteId())
-                    .orElseThrow(() -> new ResourceNotFoundException("Cliente no encontrado con ID: " + request.clienteId()));
+        if (request.getClienteId() != null) {
+            ClienteEntity cliente = clienteRepository.findById(request.getClienteId())
+                    .orElseThrow(() -> new ResourceNotFoundException("Cliente no encontrado con ID: " + request.getClienteId()));
             vehiculo.setCliente(cliente);
         }
 
@@ -69,18 +69,19 @@ public class VehiculoServiceImpl implements VehiculoService{
     @Override
     @Transactional
     public VehiculoResponse actualizar(String patente, VehiculoRequest request) {
-        VehiculoEntity vehiculo = vehiculoRepository.findByPatenteId(patente).orElseThrow(()-> new ResourceNotFoundException("Vehiculo no encontrado: " + patente));
-        if (!vehiculo.getPatente().equals(request.patente().toUpperCase())
-                && vehiculoRepository.existsByPatente(request.patente().toUpperCase())) {
-            throw new BusinessException("Ya existe un vehículo con la patente: " + request.patente());
+        VehiculoEntity vehiculo = vehiculoRepository.findByPatente(patente)
+                .orElseThrow(() -> new ResourceNotFoundException("Vehiculo no encontrado: " + patente));
+        if (!vehiculo.getPatente().equals(request.getPatente().toUpperCase())
+                && vehiculoRepository.existsByPatente(request.getPatente().toUpperCase())) {
+            throw new BusinessException("Ya existe un vehículo con la patente: " + request.getPatente());
         }
 
-        vehiculo.setPatente(request.patente().toUpperCase());
-        vehiculo.setMarca(request.marca());
-        vehiculo.setModelo(request.modelo());
-        vehiculo.setAnio(request.anio());
-        vehiculo.setColor(request.color());
-        vehiculo.setKilometraje(request.kilometraje());
+        vehiculo.setPatente(request.getPatente().toUpperCase());
+        vehiculo.setMarca(request.getMarca());
+        vehiculo.setModelo(request.getModelo());
+        vehiculo.setAnio(request.getAnio());
+        vehiculo.setColor(request.getColor());
+        vehiculo.setKilometraje(request.getKilometraje());
         return vehiculoMapper.toResponse(vehiculoRepository.save(vehiculo));
     }
 
@@ -102,10 +103,4 @@ public class VehiculoServiceImpl implements VehiculoService{
         }
         vehiculoRepository.deleteById(id);
     }
-
-
-
 }
-
-
-

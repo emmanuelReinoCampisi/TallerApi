@@ -14,7 +14,7 @@ public class TurnoResponse {
 
     private Long id;
     private Long clienteId;
-    private String NombreCliente;
+    private String nombreCliente;
     private Long vehiculoId;
     private String patenteVehiculo;
     private LocalDateTime fechaYhoraIngreso;
@@ -32,11 +32,11 @@ public class TurnoResponse {
     }
 
     public String getNombreCliente() {
-        return NombreCliente;
+        return nombreCliente;
     }
 
     public void setNombreCliente(String nombreCliente) {
-        NombreCliente = nombreCliente;
+        this.nombreCliente = nombreCliente;
     }
 
     public Long getClienteId() {
@@ -63,8 +63,8 @@ public class TurnoResponse {
         this.patenteVehiculo = patenteVehiculo;
     }
 
-    public LocalDateTime getFechaYhoraIngreso(LocalDateTime fechaYhoraIngreso) {
-        return this.fechaYhoraIngreso;
+    public LocalDateTime getFechaYhoraIngreso() {
+        return fechaYhoraIngreso;
     }
 
     public void setFechaYhoraIngreso(LocalDateTime fechaYhoraIngreso) {

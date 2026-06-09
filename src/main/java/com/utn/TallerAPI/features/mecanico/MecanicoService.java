@@ -10,7 +10,6 @@ import com.utn.TallerAPI.features.mecanico.mapper.MecanicoMapper;
 import com.utn.TallerAPI.features.usuario.UsuarioRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -19,13 +18,12 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class MecanicoService implements ImecanicoSerivice{
+public class MecanicoService implements ImecanicoService {
 
-    private  ImecanicoRepository mecanicoRepository;
-    private  EspecialidadRepository especialidadRepository;
-    private  UsuarioRepository usuarioRepository;
-    private  MecanicoMapper mecanicoMapper;
-    private  ThreadPoolTaskExecutor threadPoolTaskExecutor;
+    private final ImecanicoRepository mecanicoRepository;
+    private final EspecialidadRepository especialidadRepository;
+    private final UsuarioRepository usuarioRepository;
+    private final MecanicoMapper mecanicoMapper;
 
     @Override
     @Transactional
@@ -99,7 +97,7 @@ public class MecanicoService implements ImecanicoSerivice{
         if (IdsEspecialidades == null || IdsEspecialidades.isEmpty()) {
             mecanico.setEspecialidades(new ArrayList<>());
         } else {
-            List<Especialidad> especialidades = especialidadRepository.findAllIds(IdsEspecialidades);
+            List<Especialidad> especialidades = especialidadRepository.findAllByIdIn(IdsEspecialidades);
             if (especialidades.size() != IdsEspecialidades.size()) {
                 throw new BusinessException("Una o más especialidades no existen");
             }
@@ -124,7 +122,7 @@ public class MecanicoService implements ImecanicoSerivice{
     @Override
     @Transactional
     public EspecialidadResponse crearEspecialidad(EspecialidadRequest request) {
-        if(especialidadRepository.existsByNombre(request.nombre())) {
+        if(especialidadRepository.existsByNombreEspecialidad(request.nombre())) {
             throw new BusinessException("Esta especialidad ya existe con el nombre: " + request.nombre());
         }
         Especialidad especialidad = new Especialidad();
