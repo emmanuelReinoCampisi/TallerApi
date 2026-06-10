@@ -52,13 +52,13 @@ import lombok.*;
         return response;
     }
 
-    List<VehiculoResponse> toResponseList(List<VehiculoEntity> vehiculos){
+    public List<VehiculoResponse> toResponseList(List<VehiculoEntity> vehiculos){
         if(vehiculos == null)return null;
 
         List<VehiculoResponse> list = new ArrayList<>();
 
-        for(VehiculoEntity v : vehiculos){ ///  para cada vehiculo de la lista
-            list.add(this.toResponse(v)); /// agregalo a la lista VehiculoResponse
+        for(VehiculoEntity v : vehiculos){
+            list.add(this.toResponse(v));
         }
         return list;
     }

@@ -9,14 +9,14 @@ import org.mapstruct.Mapping;
 import java.util.List;
 
 @Mapper(componentModel = "spring")
-public interface RepuestoMapper {
+public abstract class RepuestoMapper {
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "nombre", source = "nombreRepuesto")
-    RepuestoEntity toEntity(RepuestoRequest request);
+    public abstract RepuestoEntity toEntity(RepuestoRequest request);
 
     @Mapping(target = "bajoStock", expression = "java(entity.getStockActual() <= entity.getStockMinimo())")
-    RepuestoResponse toResponse(RepuestoEntity entity);
+    public abstract RepuestoResponse toResponse(RepuestoEntity entity);
 
-    List<RepuestoResponse> toResponseList(List<RepuestoEntity> entities);
+    public abstract List<RepuestoResponse> toResponseList(List<RepuestoEntity> entities);
 }

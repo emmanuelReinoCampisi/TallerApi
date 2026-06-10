@@ -7,17 +7,17 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
-public interface DeudaMapper {
+public abstract class DeudaMapper {
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "cliente", ignore = true)
     @Mapping(target = "fechaUltimaActualizacion", ignore = true)
     @Mapping(target = "deuda", source = "saldoDeudor")
-    DeudaEntity toEntity(DeudaRequest request);
+    public abstract DeudaEntity toEntity(DeudaRequest request);
 
     @Mapping(target = "idDeuda", source = "id")
     @Mapping(target = "montoTotal", source = "deuda")
     @Mapping(target = "saldoDeudor", source = "deuda")
     @Mapping(target = "ultimaActualizacion", source = "fechaUltimaActualizacion")
-    DeudaResponse toResponse(DeudaEntity deuda);
+    public abstract DeudaResponse toResponse(DeudaEntity deuda);
 }

@@ -8,7 +8,7 @@ import org.mapstruct.Mapping;
 import java.util.List;
 
 @Mapper(componentModel = "spring")
-public interface TurnoMapper {
+public abstract class TurnoMapper {
 
     @Mapping(target = "clienteId", source = "cliente.id")
     @Mapping(target = "nombreCliente", expression = "java(turno.getCliente() != null ? turno.getCliente().getUsuario().getNombre() + \" \" + turno.getCliente().getUsuario().getApellido() : null)")
@@ -16,7 +16,7 @@ public interface TurnoMapper {
     @Mapping(target = "patenteVehiculo", source = "vehiculo.patente")
     @Mapping(target = "creadoPor", expression = "java(turno.getCreadoPor() != null ? turno.getCreadoPor().getNombre() + \" \" + turno.getCreadoPor().getApellido() : null)")
     @Mapping(target = "estado", expression = "java(turno.getEstado() != null ? turno.getEstado().name() : null)")
-    TurnoResponse toResponse(TurnoEntity turno);
+    public abstract TurnoResponse toResponse(TurnoEntity turno);
 
-    List<TurnoResponse> toResponseList(List<TurnoEntity> turnos);
+    public abstract List<TurnoResponse> toResponseList(List<TurnoEntity> turnos);
 }

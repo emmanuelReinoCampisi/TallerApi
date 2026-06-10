@@ -10,7 +10,7 @@ import org.mapstruct.Mapping;
 import java.util.List;
 
 @Mapper(componentModel = "spring", uses = {DetalleOrdenMapper.class})
-public interface OrdenMapper {
+public abstract class OrdenMapper {
 
 
     @Mapping(target = "id", source = "turno.id")
@@ -19,16 +19,16 @@ public interface OrdenMapper {
     @Mapping(target = "estado", expression = "java(orden.getEstado().name())")
     @Mapping(target = "detalles", source = "detalles")
     @Mapping(target = "mecanicos", ignore = true)
-    OrdenResponse toResponse(OrdenTrabajo orden);
+    public abstract OrdenResponse toResponse(OrdenTrabajo orden);
 
 
     @Mapping(target = "mecanicoNombre", expression = "java(ordenMecanico.getMecanico().getUsuario().getNombre() + \" \" + ordenMecanico.getMecanico().getUsuario().getApellido())")
-    @Mapping(target = "especialidadNombre", source = "mecanico.especialidad.nombre")
-    OrdenMecanicoResponse toMecanicoResponse(OrdenMecanico ordenMecanico);
+    @Mapping(target = "especialidadNombre", source = "especialidad.nombreEspecialidad")
+    public abstract OrdenMecanicoResponse toMecanicoResponse(OrdenMecanico ordenMecanico);
 
-    List<OrdenMecanicoResponse> toMecanicoResponseList(List<OrdenMecanico> mecanicos);
+    public abstract List<OrdenMecanicoResponse> toMecanicoResponseList(List<OrdenMecanico> mecanicos);
 
-    default String nombreCliente(ClienteEntity cliente) {
+    protected String nombreCliente(ClienteEntity cliente) {
         if (cliente == null || cliente.getUsuario() == null) {
             return null;
         }

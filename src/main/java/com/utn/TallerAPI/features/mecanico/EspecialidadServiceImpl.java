@@ -23,7 +23,7 @@ public class EspecialidadServiceImpl implements EspecialidadService {
     @Override
     @Transactional
     public EspecialidadResponse crear(EspecialidadRequest request) {
-        if (especialidadRepository.existsByNombreEspecialidad(request.nombre())) {
+        if (especialidadRepository.existsByNombreEspecialidad(request.getNombre())) {
             throw new BusinessException("Ya existe una especialidad con ese nombre");
         }
 

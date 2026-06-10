@@ -7,18 +7,18 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
-public interface PagoMapper {
+public abstract class PagoMapper {
 
     @Mapping(target = "idPago", ignore = true)
     @Mapping(target = "cliente", ignore = true)
     @Mapping(target = "ordenTrabajo", ignore = true)
     @Mapping(target = "fecha", ignore = true)
     @Mapping(target = "metodoPago", ignore = true)
-    PagoEntity toEntity(PagoRequest request);
+    public abstract PagoEntity toEntity(PagoRequest request);
 
     @Mapping(target = "idPago", source = "idPago")
     @Mapping(target = "monto", source = "montoPagar")
     @Mapping(target = "fechaPago", source = "fecha")
     @Mapping(target = "ordenTrabajoId", source = "ordenTrabajo.id")
-    PagoResponse toResponse(PagoEntity pago);
+    public abstract PagoResponse toResponse(PagoEntity pago);
 }

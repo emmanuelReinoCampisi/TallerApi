@@ -1,5 +1,6 @@
 package com.utn.TallerAPI.features.mecanico.Controller;
 
+import com.utn.TallerAPI.features.mecanico.dto.EspecialidadResponse;
 import com.utn.TallerAPI.features.mecanico.dto.MecanicoRequest;
 import com.utn.TallerAPI.features.mecanico.dto.MecanicoResponse;
 import com.utn.TallerAPI.features.mecanico.MecanicoService;
@@ -42,6 +43,28 @@ public class MecanicoController {
         return ResponseEntity.ok(mecanicoService.obtenerPorId(id));
     }
 
+    @PutMapping("/{id}")
+    @Operation(summary = "Actualizar mecánico")
+    public ResponseEntity<MecanicoResponse> actualizar(@PathVariable Long id, @Valid @RequestBody MecanicoRequest request) {
+        return ResponseEntity.ok(mecanicoService.actualizar(id, request));
+    }
 
+    @PostMapping("/{id}/especialidades")
+    @Operation(summary = "Asignar especialidades a mecánico")
+    public ResponseEntity<MecanicoResponse> asignarEspecialidades(@PathVariable Long id, @RequestBody List<Long> especialidadIds) {
+        return ResponseEntity.ok(mecanicoService.asignarEspecialidades(id, especialidadIds));
+    }
 
+    @PatchMapping("/{id}/desactivar")
+    @Operation(summary = "Desactivar mecánico")
+    public ResponseEntity<Void> desactivar(@PathVariable Long id) {
+        mecanicoService.desactivarMecanico(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/especialidad/{especialidadId}")
+    @Operation(summary = "Listar mecánicos por especialidad")
+    public ResponseEntity<List<MecanicoResponse>> listarPorEspecialidad(@PathVariable Long especialidadId) {
+        return ResponseEntity.ok(mecanicoService.listarPorEspecialidad(especialidadId));
+    }
 }
