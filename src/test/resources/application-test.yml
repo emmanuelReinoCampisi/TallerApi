@@ -26,7 +26,19 @@ spring:
     init:
       mode: always
 
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          secret-key: bXlzZWNyZXRrZXlzZWNyZXRrZXlzZWNyZXRrZXlzZWNyZXRrZXlzZWNyZXRr
+
+jwt:
+  secret: bXlzZWNyZXRrZXlzZWNyZXRrZXlzZWNyZXRrZXlzZWNyZXRrZXlzZWNyZXRr
+  expiration: 86400000
+  refresh-expiration: 604800000
+
 logging:
   level:
     org.hibernate.SQL: DEBUG
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.springframework.security: DEBUG
