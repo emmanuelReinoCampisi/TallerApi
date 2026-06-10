@@ -1,43 +1,22 @@
 package com.utn.TallerAPI.features.usuario.dto;
 
+import com.utn.TallerAPI.features.usuario.Rol;
 import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Builder
 public class UsuarioResponse {
-    private Long Id;
+
+    private Long id;
     private String username;
-    private String password;
     private String email;
-
-    public Long getId() {
-        return Id;
-    }
-
-    public void setId(Long id) {
-        Id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    private String nombre;
+    private String apellido;
+    private Long dni;
+    private String telefono;
+    private Rol rol;
+    private boolean activo;
 }

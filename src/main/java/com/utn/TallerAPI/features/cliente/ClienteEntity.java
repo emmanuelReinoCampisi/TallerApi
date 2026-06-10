@@ -7,7 +7,9 @@ import com.utn.TallerAPI.features.usuario.UsuarioEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
@@ -15,8 +17,6 @@ import java.util.List;
 @Table(name="clientes")
 
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
 public class ClienteEntity {
 
     @Id
@@ -78,13 +78,12 @@ public class ClienteEntity {
         this.usuario = usuario;
     }
 
-    public String getTipoCliente() {
+    public TipoCliente getTipoCliente() {
         return tipoCliente;
     }
 
     public void setTipoCliente(TipoCliente tipoCliente) {
         this.tipoCliente = tipoCliente;
     }
-
 
 }

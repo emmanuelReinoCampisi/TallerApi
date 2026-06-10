@@ -8,6 +8,6 @@ import java.util.List;
 public interface ClienteService {
 
     ClienteResponse crear(ClienteRequest clienteRequest);
-    ClienteResponse obtenerPorID(Integer id);
+    ClienteResponse obtenerPorID(Long id);
    List<ClienteResponse> obtenerTodosClientes();
 }

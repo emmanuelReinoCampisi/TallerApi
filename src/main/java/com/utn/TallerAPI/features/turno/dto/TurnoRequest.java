@@ -7,57 +7,61 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class TurnoRequest{
+public class TurnoRequest {
 
-        private Long clienteID;
-        @NotNull(message = "El vehiculo es obligatorio")
-        private  Long vehiuculoId;
-        @NotNull(message = "La fecha y el horario es necesario")
-        private  LocalDateTime fechaYhoraIngreso;
-        private  LocalDate FechaEntrega;
-        private String descripcion;
+    private Long clienteId;
 
+    @NotNull(message = "El vehiculo es obligatorio")
+    private Long vehiculoId;
 
-        public Long getClienteID() {
-                return clienteID;
-        }
+    @NotNull(message = "La fecha y el horario es necesario")
+    private LocalDateTime fechaYhoraIngreso;
 
-        public void setClienteID(Long clienteID) {
-                this.clienteID = clienteID;
-        }
+    private LocalDate fechaEntrega;
 
-        public Long getVehiuculoId() {
-                return vehiuculoId;
-        }
+    private String descripcion;
 
-        public void setVehiuculoId(Long vehiuculoId) {
-                this.vehiuculoId = vehiuculoId;
-        }
+    public Long getClienteId() {
+        return clienteId;
+    }
 
-        public LocalDateTime getFechaYhoraIngreso() {
-                return fechaYhoraIngreso;
-        }
+    public void setClienteId(Long clienteId) {
+        this.clienteId = clienteId;
+    }
 
-        public void setFechaYhoraIngreso(LocalDateTime fechaYhoraIngreso) {
-                this.fechaYhoraIngreso = fechaYhoraIngreso;
-        }
+    public Long getVehiculoId() {
+        return vehiculoId;
+    }
 
-        public LocalDate getFechaEntrega() {
-                return FechaEntrega;
-        }
+    public void setVehiculoId(Long vehiculoId) {
+        this.vehiculoId = vehiculoId;
+    }
 
-        public void setFechaEntrega(LocalDate fechaEntrega) {
-                FechaEntrega = fechaEntrega;
-        }
+    public LocalDateTime getFechaYhoraIngreso() {
+        return fechaYhoraIngreso;
+    }
 
-        public String getDescripcion() {
-                return descripcion;
-        }
+    public void setFechaYhoraIngreso(LocalDateTime fechaYhoraIngreso) {
+        this.fechaYhoraIngreso = fechaYhoraIngreso;
+    }
 
-        public void setDescripcion(String descripcion) {
-                this.descripcion = descripcion;
-        }
+    public LocalDate getFechaEntrega() {
+        return fechaEntrega;
+    }
+
+    public void setFechaEntrega(LocalDate fechaEntrega) {
+        this.fechaEntrega = fechaEntrega;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
 }

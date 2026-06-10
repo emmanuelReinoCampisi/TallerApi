@@ -17,14 +17,14 @@ import java.util.stream.Collectors;
 public class RepuestoServiceImpl implements RepuestoService{
 
 
-    private RepuestoRepository repuestoRepository;
-    private RepuestoMapper repuestoMapper;
+    private final RepuestoRepository repuestoRepository;
+    private final RepuestoMapper repuestoMapper;
 
 
     @Override
     @Transactional
     public RepuestoResponse registrar(RepuestoRequest request) {
-        if(repuestoRepository.existsByCodigo(request.codigoRepuesto())){
+        if(repuestoRepository.existsByCodigoRepuesto(request.getCodigoRepuesto())){
             throw new BusinessException("Ya existe un repuesto con este codigo");
         }
         RepuestoEntity r = repuestoMapper.toEntity(request);

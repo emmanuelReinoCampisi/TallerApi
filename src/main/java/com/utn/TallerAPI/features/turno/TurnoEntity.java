@@ -1,7 +1,6 @@
 package com.utn.TallerAPI.features.turno;
 
 import com.utn.TallerAPI.features.usuario.UsuarioEntity;
-import com.utn.TallerAPI.features.vehiculo.VehiculoEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -129,6 +128,4 @@ public class TurnoEntity {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-
-
 }

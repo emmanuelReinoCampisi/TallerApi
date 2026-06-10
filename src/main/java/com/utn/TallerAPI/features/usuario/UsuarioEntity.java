@@ -12,6 +12,8 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "usuarios")
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -42,58 +44,18 @@ public class UsuarioEntity {
     private Rol rol;
 
     private boolean activo = true;
-    @Column(name="fecha_creacion")
+
+    @Column(name = "fecha_creacion")
     private LocalDate fechaCreacion = LocalDate.now();
 
-
-    @OneToOne(mappedBy = "usuario",fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "usuario", fetch = FetchType.LAZY)
     private MecanicoEntity mecanico;
 
-    @OneToOne(mappedBy = "usuario",fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "usuario", fetch = FetchType.LAZY)
     private ClienteEntity clienteEntity;
 
     @PrePersist
     public void onCreate() {
         this.fechaCreacion = LocalDate.now();
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public String getEmail() {
-        return email;
     }
 }

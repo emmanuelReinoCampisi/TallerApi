@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: TallerAPI
+
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.H2Dialect
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+  sql:
+    init:
+      mode: always
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          secret-key: bXlzZWNyZXRrZXlzZWNyZXRrZXlzZWNyZXRrZXlzZWNyZXRrZXlzZWNyZXRr
+
+jwt:
+  secret: bXlzZWNyZXRrZXlzZWNyZXRrZXlzZWNyZXRrZXlzZWNyZXRrZXlzZWNyZXRr
+  expiration: 86400000
+  refresh-expiration: 604800000
+
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.springframework.security: DEBUG

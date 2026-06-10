@@ -15,7 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class RepuestoController {
 
-    private  RepuestoService repuestoService;
+    private final RepuestoService repuestoService;
 
     @PostMapping
     public ResponseEntity<RepuestoResponse> registrarRepuesto(@Valid @RequestBody RepuestoRequest request){
@@ -33,7 +33,7 @@ public class RepuestoController {
         return ResponseEntity.ok(repuestoService.listarTodos());
     }
 
-    @GetMapping("/{bajo-sotck}")
+    @GetMapping("/bajo-stock")
     public ResponseEntity<List<RepuestoResponse>> listarBajoStock(){
         return ResponseEntity.ok(repuestoService.listarBajoStock());
     }

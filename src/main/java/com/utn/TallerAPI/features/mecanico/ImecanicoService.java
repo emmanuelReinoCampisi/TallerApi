@@ -7,7 +7,7 @@ import com.utn.TallerAPI.features.mecanico.dto.MecanicoResponse;
 
 import java.util.List;
 
-public interface ImecanicoSerivice {
+public interface ImecanicoService {
 
     MecanicoResponse crear (MecanicoRequest request);
     MecanicoResponse obtenerPorId(Long id);

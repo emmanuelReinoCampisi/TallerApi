@@ -10,25 +10,25 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
 public class DeudaServiceImpl implements DeudaService {
 
-    private DeudaRepository deudaRepository;
-    private ClienteRepository clienteRepository;
-    private DeudaMapper deudaMapper;
+    private final DeudaRepository deudaRepository;
+    private final ClienteRepository clienteRepository;
+    private final DeudaMapper deudaMapper;
 
 
     @Override
-    public DeudaResponse obtenerPorClienteId(Integer clienteId) {
+    public DeudaResponse obtenerPorClienteId(Long clienteId) {
 
-        if(!clienteRepository.existsById(clienteId)){
-            throw new ResourceNotFoundException("No se encontro deuda del cliente con ID: "+clienteId);
+        if (!clienteRepository.existsById(clienteId)) {
+            throw new ResourceNotFoundException("No se encontro deuda del cliente con ID: " + clienteId);
         }
 
-        DeudaEntity deuda = deudaRepository.findById(clienteId).orElseThrow(() -> new ResourceNotFoundException("No se encontro una cuenta con deuda activa"));
+        DeudaEntity deuda = deudaRepository.findByClienteId(clienteId)
+                .orElseThrow(() -> new ResourceNotFoundException("No se encontro una cuenta con deuda activa"));
 
         return deudaMapper.toResponse(deuda);
     }
@@ -37,10 +37,11 @@ public class DeudaServiceImpl implements DeudaService {
     @Transactional
     public DeudaResponse ajustarDeudaManualmente(DeudaRequest request) {
 
-        DeudaEntity deuda = deudaRepository.findByClienteId(request.clienteId()).orElseThrow(()-> new ResourceNotFoundException("No se encuentra una cuenta con deuda para el cliente con el ID: "+request.clienteId()));
+        DeudaEntity deuda = deudaRepository.findByClienteId(request.getClienteId())
+                .orElseThrow(() -> new ResourceNotFoundException("No se encuentra una cuenta con deuda para el cliente con el ID: " + request.getClienteId()));
 
-        deuda.setDueda(request.saldoDeudor());
-        deuda.setFechaPagar(request.fechaPagar());
+        deuda.setDeuda(request.getSaldoDeudor());
+        deuda.setFechaPagar(request.getFechaPagar());
         deuda.setFechaUltimaActualizacion(LocalDate.now());
         return deudaMapper.toResponse(deudaRepository.save(deuda));
     }

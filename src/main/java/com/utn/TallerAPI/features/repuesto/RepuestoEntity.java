@@ -37,8 +37,7 @@ public class RepuestoEntity {
     @Column(nullable = false)
     private Integer stockMinimo; // tirar alerta cuando hay poco stock
 
-public boolean isBajoStoc(){
-
+public boolean isBajoStock() {
     return this.stockActual <= this.stockMinimo;
 }
 

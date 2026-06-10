@@ -1,13 +1,14 @@
 package com.utn.TallerAPI.features.finanzas.deuda.dto;
 
-import java.time.LocalDateTime;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 public class DeudaResponse {
 
     private Long idDeuda;
-    private Double montoTotal;
-    private Double saldoDeudor;
-    private LocalDateTime ultimaActualizacion;
+    private BigDecimal montoTotal;
+    private BigDecimal saldoDeudor;
+    private LocalDate ultimaActualizacion;
 
     public DeudaResponse() {
     }
@@ -15,12 +16,12 @@ public class DeudaResponse {
     public Long getIdDeuda() { return idDeuda; }
     public void setIdDeuda(Long idDeuda) { this.idDeuda = idDeuda; }
 
-    public Double getMontoTotal() { return montoTotal; }
-    public void setMontoTotal(Double montoTotal) { this.montoTotal = montoTotal; }
+    public BigDecimal getMontoTotal() { return montoTotal; }
+    public void setMontoTotal(BigDecimal montoTotal) { this.montoTotal = montoTotal; }
 
-    public Double getSaldoDeudor() { return saldoDeudor; }
-    public void setSaldoDeudor(Double saldoDeudor) { this.saldoDeudor = saldoDeudor; }
+    public BigDecimal getSaldoDeudor() { return saldoDeudor; }
+    public void setSaldoDeudor(BigDecimal saldoDeudor) { this.saldoDeudor = saldoDeudor; }
 
-    public LocalDateTime getUltimaActualizacion() { return ultimaActualizacion; }
-    public void setUltimaActualizacion(LocalDateTime ultimaActualizacion) { this.ultimaActualizacion = ultimaActualizacion; }
+    public LocalDate getUltimaActualizacion() { return ultimaActualizacion; }
+    public void setUltimaActualizacion(LocalDate ultimaActualizacion) { this.ultimaActualizacion = ultimaActualizacion; }
 }

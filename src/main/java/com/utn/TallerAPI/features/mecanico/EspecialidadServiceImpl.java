@@ -7,24 +7,23 @@ import com.utn.TallerAPI.features.mecanico.dto.EspecialidadResponse;
 import com.utn.TallerAPI.features.mecanico.mapper.EspecialidadMapper;
 import com.utn.TallerAPI.features.mecanico.Especialidad;
 import com.utn.TallerAPI.features.mecanico.EspecialidadRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Service
+@RequiredArgsConstructor
 public class EspecialidadServiceImpl implements EspecialidadService {
 
     private final EspecialidadRepository especialidadRepository;
-    private final EspecialidadMapper  especialidadMapper;
-
-    public EspecialidadServiceImpl(EspecialidadRepository especialidadRepository, EspecialidadMapper especialidadMapper) {
-        this.especialidadRepository = especialidadRepository;
-        this.especialidadMapper = especialidadMapper;
-    }
+    private final EspecialidadMapper especialidadMapper;
 
     @Override
     @Transactional
     public EspecialidadResponse crear(EspecialidadRequest request) {
-        if (especialidadRepository.existsByNombre(request.nombre())) {
+        if (especialidadRepository.existsByNombreEspecialidad(request.nombre())) {
             throw new BusinessException("Ya existe una especialidad con ese nombre");
         }
 

@@ -25,36 +25,4 @@ public class Especialidad {
 
     @OneToMany(mappedBy = "especialidad", fetch = FetchType.LAZY)
     private List<OrdenMecanico> ordenesMecanico;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public List<MecanicoEntity> getMecanicos() {
-        return mecanicos;
-    }
-
-    public void setMecanicos(List<MecanicoEntity> mecanicos) {
-        this.mecanicos = mecanicos;
-    }
-
-    public String getNombreEspecialidad() {
-        return nombreEspecialidad;
-    }
-
-    public void setNombreEspecialidad(String nombreEspecialidad) {
-        this.nombreEspecialidad = nombreEspecialidad;
-    }
-
-    public List<OrdenMecanico> getOrdenesMecanico() {
-        return ordenesMecanico;
-    }
-
-    public void setOrdenesMecanico(List<OrdenMecanico> ordenesMecanico) {
-        this.ordenesMecanico = ordenesMecanico;
-    }
 }

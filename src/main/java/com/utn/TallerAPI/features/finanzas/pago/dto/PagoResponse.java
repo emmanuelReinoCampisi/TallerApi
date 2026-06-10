@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 public class PagoResponse {
 
     private Long idPago;
-    private Double monto;
+    private BigDecimal monto;
     private LocalDateTime fechaPago;
     private Long ordenTrabajoId;
 
@@ -16,7 +16,7 @@ public class PagoResponse {
     public Long getIdPago() { return idPago; }
     public void setIdPago(Long idPago) { this.idPago = idPago; }
 
-    public Double getMonto() { return monto; }
+    public BigDecimal getMonto() { return monto; }
     public void setMonto(BigDecimal monto) { this.monto = monto; }
 
     public LocalDateTime getFechaPago() { return fechaPago; }

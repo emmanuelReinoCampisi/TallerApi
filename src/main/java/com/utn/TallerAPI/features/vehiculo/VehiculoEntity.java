@@ -26,8 +26,6 @@ public class VehiculoEntity {
     private Integer kilometraje;
     private String color;
     private EstadoVehiculo estado;
-    @ManyToOne
-    @JoinColumn(name = "cliente_id")
     private ClienteEntity cliente;
 
     public Long getId() {
@@ -86,7 +84,7 @@ public class VehiculoEntity {
         this.color = color;
     }
 
-    public String getEstado() {
+    public EstadoVehiculo getEstado() {
         return estado;
     }
 
