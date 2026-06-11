@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -26,8 +27,8 @@ public class TurnoController {
     @PostMapping
     @Operation(summary = "Crear turno")
     public ResponseEntity<TurnoResponse> crear(@Valid @RequestBody TurnoRequest request,
-                                               @RequestHeader("X-Username") String username) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(turnoService.crear(request, username));
+                                               Authentication authentication) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(turnoService.crear(request, authentication.getName()));
     }
 
     @GetMapping("/{id}")
