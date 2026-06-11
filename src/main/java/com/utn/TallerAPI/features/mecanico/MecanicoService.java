@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class MecanicoService implements ImecanicoSerivice{
+public class MecanicoService implements ImecanicoService{
 
     private final ImecanicoRepository mecanicoRepository;
     private final EspecialidadRepository especialidadRepository;

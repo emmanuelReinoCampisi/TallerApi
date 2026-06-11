@@ -9,7 +9,7 @@ import org.mapstruct.Mapping;
 import java.util.List;
 import java.util.Optional;
 
-@Mapper()
+@Mapper(componentModel = "spring")
 public interface MecanicoMapper {
     @Mapping(target = "usuarioId", ignore = true)
     @Mapping(target = "nombre", source = "usuario.nombre")

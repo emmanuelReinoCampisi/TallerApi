@@ -26,6 +26,9 @@ public class VehiculoEntity {
     private Integer kilometraje;
     private String color;
     private EstadoVehiculo estado;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cliente_id")
     private ClienteEntity cliente;
 
     public Long getId() {
